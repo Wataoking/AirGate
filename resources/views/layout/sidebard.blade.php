@@ -89,6 +89,10 @@ const indicator = document.querySelector('.indicator');
 
 // Positionne l'indicator sur l'item .active au chargement
 function moveIndicator(target) {
+    if (!target || !indicator) {
+        return;
+    }
+
     indicator.style.top = target.offsetTop + 'px';
 }
 
