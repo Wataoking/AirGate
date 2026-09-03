@@ -3152,6 +3152,102 @@ a {
     }
 }
 
+/* Mobile sidebar toggle */
+@media screen and (max-width: 768px) {
+    .app-shell {
+        position: relative;
+    }
+
+    .app-sidebar {
+        display: block;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        bottom: 0;
+        left: -100%;
+        width: min(82vw, 280px);
+        height: 100vh;
+        min-height: 100vh;
+        flex: none;
+        overflow-y: auto;
+        background-color: #4B9DA4;
+        transition: left 0.25s ease;
+    }
+
+    .app-sidebar.active {
+        left: 0;
+    }
+
+    .app-content {
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    .app-content-inner {
+        width: 100%;
+    }
+
+    .picture2 {
+        display: flex;
+        position: sticky;
+        z-index: 900;
+        top: 0;
+        min-height: 58px;
+        padding: 8px 12px;
+        background: #4B9DA4;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+    }
+
+    .picture2 img {
+        width: auto;
+        max-width: 150px;
+        height: 42px;
+        object-fit: contain;
+    }
+
+    .toggle-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        margin-left: auto;
+        padding: 0;
+        color: #fff;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, .7);
+        border-radius: 8px;
+    }
+
+    .app-sidebar .picture img {
+        width: 70%;
+        max-width: 190px;
+    }
+
+    .app-sidebar .plat span,
+    .app-sidebar .perso h2 {
+        display: block;
+    }
+
+    .app-sidebar .phrase0 a {
+        justify-content: flex-start;
+        margin-left: 0;
+        padding: 12px 18px;
+        font-size: 18px;
+    }
+
+    .app-sidebar .phrase9 {
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .toggle-button,
+    .picture2 {
+        display: none;
+    }
+}
+
 @media (max-width: 420px) {
     .app-sidebar {
         flex-basis: 52px;
