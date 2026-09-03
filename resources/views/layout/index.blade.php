@@ -9,14 +9,32 @@
 </head>
 <body>
     <section class="main-container app-shell">
-        <div class="toiture app-sidebar">
+        <div class="toiture app-sidebar" id="mySidebar">
           @include('layout.sidebard')
         </div>
-        <div class="clime app-content">
+        <div class="clime app-content" id="mainContent>
             <main class="app-content-inner">
+                <div class="picture2">
+                    <img src="{{ asset('image/logo.png') }}" alt="Logo de la plateforme">
+                    <button class="toggle-button" onclick="toggleSidebar()">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
                 @yield('content')
             </main>
         </div>
     </section>
+
+    <script>
+        function toggleSidebar() {
+            // 1. On récupère les éléments HTML par leur ID
+            const sidebar = document.getElementById("mySidebar");
+            const content = document.getElementById("mainContent");
+            
+            // 2. On ajoute ou supprime la classe "active" à chaque clic
+            sidebar.classList.toggle("active");
+            content.classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
