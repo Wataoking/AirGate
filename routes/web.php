@@ -42,7 +42,7 @@ Route::middleware(['auth', 'role:admin'])
 
     });
 
-Route::middleware(['auth', 'role:super_admin'])
+Route::middleware(['auth', 'role:super_admin,superadmin'])
     ->prefix('super-admin')
     ->name('super-admin.')
     ->group(function () {

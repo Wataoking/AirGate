@@ -286,3 +286,203 @@ input{
 .lundi a{
     color: #4B9DA4;
 }
+
+/* Responsive layout */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 900px) {
+    .r1 {
+        padding: 35px 10vw;
+    }
+
+    .cout {
+        gap: 8vw;
+    }
+
+    .neuf button {
+        margin-left: 0;
+        padding: 15px 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .roue {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .salade {
+        margin-right: 0;
+    }
+
+    .salade img {
+        width: min(300px, 80vw);
+        height: auto;
+    }
+
+    .r1,
+    .chaussette,
+    .maison,
+    .ordinateur {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.25rem;
+        border-radius: 18px;
+    }
+
+    .car {
+        font-size: 18px;
+    }
+
+    .meuf {
+        font-size: 22px;
+    }
+
+    .cout {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        width: 100%;
+    }
+
+    .moto a,
+    .masse a,
+    .velo a {
+        font-size: 16px;
+    }
+
+    .neuf button,
+    .gang button,
+    .cinq button,
+    .vendredi button {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .voiture input:not([type="checkbox"]),
+    .quatre input,
+    .jeudi input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .numero {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .deux img,
+    .mardi img {
+        width: min(300px, 80vw);
+        height: auto;
+    }
+}
+
+/* Fluid layout for all authentication pages */
+html,
+body {
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+.roue,
+.chaussette,
+.maison,
+.ordinateur {
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    max-width: 100%;
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+    .r1 {
+        padding-left: clamp(24px, 8vw, 120px);
+        padding-right: clamp(24px, 8vw, 120px);
+    }
+
+    .cout {
+        gap: clamp(24px, 8vw, 100px);
+    }
+}
+
+@media (max-width: 600px) {
+    .chaussure,
+    .tele,
+    .souris {
+        align-items: flex-start;
+        min-height: 100vh;
+        margin-top: 0;
+        padding: 16px;
+    }
+
+    .roue,
+    .chaussette,
+    .maison,
+    .ordinateur {
+        margin: 0 auto;
+    }
+
+    .page h1,
+    .trois p {
+        font-size: clamp(24px, 8vw, 35px);
+    }
+
+    .page p,
+    .trois + p,
+    .mercredi p {
+        line-height: 1.5;
+    }
+
+    .voiture,
+    .football,
+    .maison,
+    .ordinateur {
+        width: 100%;
+    }
+
+    .voiture label,
+    .moteur input,
+    .football input,
+    .quatre input,
+    .jeudi input {
+        font-size: 16px;
+    }
+
+    .remember {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .chaussure,
+    .tele,
+    .souris {
+        padding: 8px;
+    }
+
+    .r1,
+    .chaussette,
+    .maison,
+    .ordinateur {
+        padding: 14px 10px;
+    }
+
+    .salade img {
+        width: 75vw;
+    }
+}

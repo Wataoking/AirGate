@@ -90,33 +90,35 @@
             <button class="btn-light" type="submit">Filtrer</button>
             <a class="btn-light" href="{{ route('super-admin.compte') }}">Réinitialiser</a>
         </form>
-        <table>
-            <thead><tr><th>Nom</th><th>Rôle</th><th>Statut</th><th>Création</th><th>Actions</th></tr></thead>
-            <tbody>
-            @forelse ($accounts as $account)
-                <tr>
-                    <td><div class="u"><span class="av av1">{{ strtoupper(substr($account->name, 0, 2)) }}</span><div><b>{{ $account->name }}</b><i>{{ $account->email }}</i></div></div></td>
-                    <td><span class="b b-blue">{{ ucfirst(str_replace('_', ' ', $account->role)) }}</span></td>
-                    <td><span class="b {{ $account->email_verified_at ? 'b-green' : 'b-gray' }}">{{ $account->email_verified_at ? 'Actif' : 'Inactif' }}</span></td>
-                    <td>{{ $account->created_at?->format('d/m/Y H:i') }}</td>
-                    <td class="acts">
-                        <a class="btn-light" href="{{ route('super-admin.compte', ['edit' => $account->id]) }}">Modifier</a>
-                        <form method="POST" action="{{ route('super-admin.compte.reset-password', $account) }}" class="inline-form">
-                            @csrf
-                            <button class="btn-light" type="submit">Réinitialiser</button>
-                        </form>
-                        <form method="POST" action="{{ route('super-admin.compte.destroy', $account) }}" class="inline-form" onsubmit="return confirm('Supprimer ce compte ?');">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn-light" type="submit">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-            @empty
-                <tr><td colspan="5">Aucun compte trouvé.</td></tr>
-            @endforelse
-            </tbody>
-        </table>
+        <div class="accounts-table-wrap">
+            <table>
+                <thead><tr><th>Nom</th><th>Rôle</th><th>Statut</th><th>Création</th><th>Actions</th></tr></thead>
+                <tbody>
+                @forelse ($accounts as $account)
+                    <tr>
+                        <td><div class="u"><span class="av av1">{{ strtoupper(substr($account->name, 0, 2)) }}</span><div><b>{{ $account->name }}</b><i>{{ $account->email }}</i></div></div></td>
+                        <td><span class="b b-blue">{{ ucfirst(str_replace('_', ' ', $account->role)) }}</span></td>
+                        <td><span class="b {{ $account->email_verified_at ? 'b-green' : 'b-gray' }}">{{ $account->email_verified_at ? 'Actif' : 'Inactif' }}</span></td>
+                        <td>{{ $account->created_at?->format('d/m/Y H:i') }}</td>
+                        <td class="acts">
+                            <a class="btn-light" href="{{ route('super-admin.compte', ['edit' => $account->id]) }}">Modifier</a>
+                            <form method="POST" action="{{ route('super-admin.compte.reset-password', $account) }}" class="inline-form">
+                                @csrf
+                                <button class="btn-light" type="submit">Réinitialiser</button>
+                            </form>
+                            <form method="POST" action="{{ route('super-admin.compte.destroy', $account) }}" class="inline-form" onsubmit="return confirm('Supprimer ce compte ?');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-light" type="submit">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="5">Aucun compte trouvé.</td></tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection
