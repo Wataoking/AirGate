@@ -33,6 +33,11 @@
     width: 70%;
     height: auto;
 }
+
+.picture2 img{
+    width: 20%;
+    height: auto;
+}
 .perso{
     color: #C5FECD;
     margin-left: 1rem;
@@ -196,12 +201,41 @@
     font-size: 20px;
 }
 
+.toggle-button{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
 .picture{
     justify-content: center;
     align-items: center;
     width: 100%;
     display: flex;
+    justify-content:space-between;
 }
+
+.picture2{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .picture2{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content:space-between;
+    }
+
+    .nb400{
+        display: none !important;
+    }
+    
+}
+
 .stat{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -3054,6 +3088,28 @@ a {
     flex: 0 0 clamp(220px, 20vw, 300px);
     width: auto;
     min-height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+    .app-sidebar {
+        display: none;
+    }
+
+    /* Style de base de la sidebar (masquée par défaut) */
+    .app-sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Cache la sidebar à gauche */
+    background-color: #111;
+    transition: 0.3s; /* Animation fluide */
+    padding-top: 60px;
+    }
+
+    .app-sidebar.active {
+    left: 0;
+    }
 }
 
 .app-content {
