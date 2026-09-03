@@ -14,9 +14,7 @@ use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Models\Plan;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/login');
 
 Route::get('/sidebard', function () {
     return view('layout.sidebard');
