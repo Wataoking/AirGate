@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Keep the default dashboard usable on every viewport without changing its markup. */
+@layer base {
+    html,
+    body {
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+    img,
+    svg {
+        max-width: 100%;
+    }
+}
+
+@layer utilities {
+    @media (max-width: 640px) {
+        .max-w-7xl {
+            width: 100%;
+        }
+
+        main .py-12 {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        main .p-6 {
+            padding: 1rem;
+        }
+
+        header .text-xl {
+            font-size: 1.125rem;
+            line-height: 1.5rem;
+        }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+        main .py-12 {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+    }
+}
