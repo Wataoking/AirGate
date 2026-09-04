@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Alert;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -43,16 +44,24 @@ class AccountController extends Controller
             'phone_number' => ['required', 'string', 'max:30'],
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => $validated['role'],
             'phone number' => $validated['phone_number'],
-            'email_verified_at' => now(),
+            'account_status' => 'pending',
         ]);
 
-        return back()->with('status', 'Compte créé avec succès.');
+        Alert::create([
+            'type' => 'alert',
+            'kind' => 'account_registration',
+            'title' => 'Nouvelle demande de compte',
+            'message' => "{$user->name} demande un compte {$user->role}.",
+            'user_id' => $user->id,
+        ]);
+
+        return back()->with('status', 'Compte créé et envoyé pour validation.');
     }
 
     public function update(Request $request, User $user): RedirectResponse

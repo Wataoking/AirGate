@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'phone number',
         'role',
+        'account_status',
     ];
 
     /**
@@ -57,6 +58,11 @@ class User extends Authenticatable
     public function isManager(): bool
     {
         return $this->role === 'manager';
+    }
+
+    public function isApproved(): bool
+    {
+        return $this->account_status === 'approved';
     }
 
     public function transactions()

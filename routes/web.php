@@ -44,7 +44,7 @@ Route::middleware(['auth', 'role:admin'])
 
     });
 
-Route::middleware(['auth', 'role:super_admin,superadmin'])
+Route::middleware(['auth', 'role:super_admin,superadmin,admin,manager,user'])
     ->prefix('super-admin')
     ->name('super-admin.')
     ->group(function () {
@@ -78,6 +78,8 @@ Route::middleware(['auth', 'role:super_admin,superadmin'])
         Route::patch('/notification/{alert}/read', [NotificationController::class, 'markRead'])->name('notification.read');
         Route::post('/notification/read-all', [NotificationController::class, 'markAllRead'])->name('notification.read-all');
         Route::delete('/notification/{alert}', [NotificationController::class, 'destroy'])->name('notification.destroy');
+        Route::patch('/notification/{alert}/approve-account', [NotificationController::class, 'approveAccount'])->name('notification.approve-account');
+        Route::patch('/notification/{alert}/reject-account', [NotificationController::class, 'rejectAccount'])->name('notification.reject-account');
         Route::get('/parametre', [SettingsController::class, 'index'])->name('parametre');
         Route::put('/parametre', [SettingsController::class, 'update'])->name('parametre.update');
         Route::post('/parametre/reset', [SettingsController::class, 'reset'])->name('parametre.reset');

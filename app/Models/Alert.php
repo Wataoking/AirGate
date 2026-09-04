@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alert extends Model
 {
-    protected $fillable = ['type', 'title', 'message', 'read_at', 'modem_id'];
+    protected $fillable = ['type', 'kind', 'title', 'message', 'read_at', 'modem_id', 'user_id'];
 
     protected function casts(): array
     {
@@ -16,5 +16,10 @@ class Alert extends Model
     public function modem()
     {
         return $this->belongsTo(Modem::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
