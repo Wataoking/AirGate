@@ -21,6 +21,10 @@
                     <p><strong>Connexion</strong> à votre compte</p>
                 </div>
 
+                @if (session('status'))
+                    <p class="form-status">{{ session('status') }}</p>
+                @endif
+
                 <form class="voiture" method="POST" action="{{ route('login') }}">
                     @csrf
 

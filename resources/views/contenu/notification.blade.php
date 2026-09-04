@@ -24,6 +24,10 @@
                 <div class="icon bg-{{ $alert->type === 'alert' ? 'red' : 'blue' }}">{{ $alert->type === 'alert' ? '!' : 'i' }}</div>
                 <div class="content"><b>{{ $alert->title }}</b><p>{{ $alert->message }}</p><small>{{ $alert->created_at->diffForHumans() }}</small></div>
                 <div class="notification-actions">
+                    @if ($alert->kind === 'account_registration' && $alert->user && $alert->user->account_status === 'pending')
+                        <form method="POST" action="{{ route('super-admin.notification.approve-account', $alert) }}">@csrf @method('PATCH')<button class="btn-outline" type="submit">Valider le compte</button></form>
+                        <form method="POST" action="{{ route('super-admin.notification.reject-account', $alert) }}">@csrf @method('PATCH')<button class="btn-outline gray" type="submit">Refuser le compte</button></form>
+                    @endif
                     @if (! $alert->read_at)
                         <form method="POST" action="{{ route('super-admin.notification.read', $alert) }}">@csrf @method('PATCH')<button class="btn-outline" type="submit">Marquer comme lu</button></form>
                     @else

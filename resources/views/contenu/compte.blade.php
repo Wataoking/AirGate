@@ -98,7 +98,7 @@
                     <tr>
                         <td><div class="u"><span class="av av1">{{ strtoupper(substr($account->name, 0, 2)) }}</span><div><b>{{ $account->name }}</b><i>{{ $account->email }}</i></div></div></td>
                         <td><span class="b b-blue">{{ ucfirst(str_replace('_', ' ', $account->role)) }}</span></td>
-                        <td><span class="b {{ $account->email_verified_at ? 'b-green' : 'b-gray' }}">{{ $account->email_verified_at ? 'Actif' : 'Inactif' }}</span></td>
+                        <td><span class="b {{ $account->account_status === 'approved' ? 'b-green' : ($account->account_status === 'pending' ? 'b-gray' : 'b-red') }}">{{ $account->account_status === 'approved' ? 'Actif' : ($account->account_status === 'pending' ? 'En attente' : 'Refusé') }}</span></td>
                         <td>{{ $account->created_at?->format('d/m/Y H:i') }}</td>
                         <td class="acts">
                             <a class="btn-light" href="{{ route('super-admin.compte', ['edit' => $account->id]) }}">Modifier</a>

@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use App\Models\Alert;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
@@ -43,13 +42,17 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'user',
             'phone number' => $request->phone_number,
-            'email_verified_at' => now(),
+            'account_status' => 'pending',
         ]);
 
-        event(new Registered($user));
+        Alert::create([
+            'type' => 'alert',
+            'kind' => 'account_registration',
+            'title' => 'Nouvelle demande de compte',
+            'message' => "{$user->name} demande la création d’un compte utilisateur.",
+            'user_id' => $user->id,
+        ]);
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect()->route('login')->with('status', 'Votre demande a été envoyée au super administrateur pour validation.');
     }
 }
