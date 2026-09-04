@@ -3250,13 +3250,114 @@ a {
     }
 }
 
-@media (max-width: 420px) {
-    .app-sidebar {
-        flex-basis: 52px;
-        width: 52px;
+/* Final mobile layout: keep the drawer usable on every phone width. */
+@media screen and (max-width: 768px) {
+    .app-shell {
+        width: 100%;
+        overflow-x: hidden;
     }
 
-    .app-content {
-        width: calc(100% - 52px);
+    .app-sidebar {
+        width: min(82vw, 300px);
+        max-width: calc(100vw - 24px);
+        padding-top: max(60px, env(safe-area-inset-top));
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .app-content,
+    .app-content-inner {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .picture2 {
+        min-height: 56px;
+        padding-top: max(8px, env(safe-area-inset-top));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-bottom: 8px;
+        padding-left: max(12px, env(safe-area-inset-left));
+    }
+
+    .picture2 img {
+        max-width: min(150px, calc(100% - 58px));
+    }
+
+    .toggle-button {
+        flex: 0 0 42px;
+        width: 42px;
+        min-width: 42px;
+        min-height: 42px;
+    }
+
+    .app-sidebar .phrase0 a {
+        min-height: 44px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .app-sidebar {
+        width: calc(100vw - 16px);
+        max-width: calc(100vw - 16px);
+    }
+
+    .picture2 {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .toggle-button {
+        flex-basis: 40px;
+        width: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        height: 40px;
+    }
+}
+
+/* Override legacy fixed-width mobile rules for the drawer layout. */
+@media screen and (max-width: 768px) {
+    .main-container .toiture.app-sidebar {
+        display: block;
+        position: fixed;
+        z-index: 1100;
+        top: 0;
+        right: auto;
+        bottom: 0;
+        left: 0;
+        width: min(82vw, 300px) !important;
+        max-width: calc(100vw - 16px);
+        height: 100dvh;
+        min-height: 100dvh;
+        padding-top: max(60px, env(safe-area-inset-top));
+        padding-bottom: env(safe-area-inset-bottom);
+        overflow-x: hidden;
+        overflow-y: auto;
+        transform: translateX(-105%);
+        transition: transform 0.25s ease;
+    }
+
+    .main-container .toiture.app-sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-container .clime.app-content {
+        width: 100% !important;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .main-container .clime.app-content .app-content-inner {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .main-container .toiture.app-sidebar {
+        width: calc(100vw - 16px) !important;
+        max-width: calc(100vw - 16px);
     }
 }
