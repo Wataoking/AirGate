@@ -16,7 +16,7 @@
             <main class="app-content-inner">
                 <div class="picture2">
                     <img src="{{ asset('image/logo.png') }}" alt="Logo de la plateforme">
-                    <button class="toggle-button" type="button" aria-controls="mySidebar" aria-expanded="false" onclick="toggleSidebar()">
+                    <button id="sidebarToggle" class="toggle-button" type="button" aria-controls="mySidebar" aria-expanded="false">
                         <i class="fa-solid fa-bars"></i>
                     </button>
                 </div>
@@ -26,17 +26,31 @@
     </section>
 
     <script>
+        const sidebar = document.getElementById('mySidebar');
+        const content = document.getElementById('mainContent');
+        const toggleButton = document.getElementById('sidebarToggle');
+
         function toggleSidebar() {
-            // 1. On récupère les éléments HTML par leur ID
-            const sidebar = document.getElementById("mySidebar");
-            const content = document.getElementById("mainContent");
-            const button = document.querySelector(".toggle-button");
-            
-            // 2. On ajoute ou supprime la classe "active" à chaque clic
-            const isOpen = sidebar.classList.toggle("active");
-            content.classList.toggle("active", isOpen);
-            button.setAttribute("aria-expanded", String(isOpen));
+            if (!sidebar || !content || !toggleButton) {
+                return;
+            }
+
+            const isOpen = sidebar.classList.toggle('active');
+            content.classList.toggle('active', isOpen);
+            toggleButton.setAttribute('aria-expanded', String(isOpen));
         }
+
+        toggleButton?.addEventListener('click', toggleSidebar);
+
+        sidebar?.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                    content?.classList.remove('active');
+                    toggleButton?.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
     </script>
 </body>
 </html>
